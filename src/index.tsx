@@ -21,6 +21,7 @@ interface DefaultStepIndicatorStyles {
   stepIndicatorSize: number;
   currentStepIndicatorSize: number;
   separatorStrokeWidth: number;
+  seperatorStrokeHeight: number;
   separatorStrokeUnfinishedWidth: number;
   separatorStrokeFinishedWidth: number;
   currentStepStrokeWidth: number;
@@ -40,6 +41,11 @@ interface DefaultStepIndicatorStyles {
   stepIndicatorLabelUnFinishedColor: string;
   labelColor: string;
   labelSize: number;
+  textAlign?: | 'center'
+  | 'left'
+  | 'auto'
+  | 'right'
+  | undefined;
   labelAlign:
     | 'center'
     | 'flex-start'
@@ -49,12 +55,15 @@ interface DefaultStepIndicatorStyles {
     | undefined;
   currentStepLabelColor: string;
   labelFontFamily?: string;
+  marginHorizontal?: number;
+  labelWidth?: number;
 }
 
 const defaultStyles: DefaultStepIndicatorStyles = {
   stepIndicatorSize: 30,
   currentStepIndicatorSize: 40,
   separatorStrokeWidth: 3,
+  seperatorStrokeHeight: 50,
   separatorStrokeUnfinishedWidth: 0,
   separatorStrokeFinishedWidth: 0,
   currentStepStrokeWidth: 5,
@@ -76,6 +85,9 @@ const defaultStyles: DefaultStepIndicatorStyles = {
   labelSize: 13,
   labelAlign: 'center',
   currentStepLabelColor: '#4aae4f',
+  textAlign: 'left',
+  marginHorizontal: 20,
+  labelWidth: 270
 };
 
 const StepIndicator = ({
@@ -276,6 +288,9 @@ const StepIndicator = ({
                   {
                     fontSize: customStyles.labelSize,
                     fontFamily: customStyles.labelFontFamily,
+                    width: customStyles.labelWidth,
+                    textAlign: customStyles.textAlign,
+                    marginHorizontal: customStyles.marginHorizontal
                   },
                 ]}
               >
@@ -415,20 +430,24 @@ const StepIndicator = ({
     ]).start();
   };
 
+  const calculateHeight = () => {
+   return labels.length * customStyles.seperatorStrokeHeight
+  }
+
   return (
     <View
       style={[
         styles.container,
         direction === 'vertical'
-          ? { flexDirection: 'row', flex: 1 }
+          ? { flexDirection: 'row', flex: 1, height: calculateHeight()}
           : { flexDirection: 'column' },
       ]}
     >
       {width !== 0 && (
-        <React.Fragment>
+        <View style={{backgroundColor: "aqua"}}>
           {renderProgressBarBackground()}
           {renderProgressBar()}
-        </React.Fragment>
+        </View>
       )}
       {renderStepIndicator()}
       {labels && renderStepLabels()}
@@ -438,11 +457,12 @@ const StepIndicator = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(1,0,0,0)',
+    backgroundColor: 'transparent',
   },
   stepIndicatorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    // backgroundColor: "aqua",
     justifyContent: 'space-around',
     backgroundColor: 'rgba(1,0,0,0)',
   },

@@ -121,6 +121,12 @@ onPageChange(position){
 | ```labelSize``` | Number  | 13
 | ```labelAlign``` | String  | 'center'
 | ```labelFontFamily``` | String  |
+| ```textAlign``` | String  | 'left' |
+| ```marginHorizontal (for label) ``` | number |
+| ```labelWidth``` | number  | '270' |
+| ```seperatorStrokeHeight``` | number  | '50' |
+
+
 
 
 ### Contributing

@@ -33,6 +33,15 @@ export interface StepIndicatorStyles {
    */
   separatorStrokeWidth?: number;
 
+   /**
+   * height of the seperator between steps
+   *
+   * @default 50
+   * @type {number}
+   * @memberof StepIndicatorStyles
+   */
+    seperatorStrokeHeight?: number;
+
   /**
    * Stroke thickness of the separator between unifinished steps
    *
@@ -229,6 +238,32 @@ export interface StepIndicatorStyles {
     | 'baseline'
     | undefined;
 
+
+    /**
+   * text alignment
+   *
+   * @default 'left'
+   * @type {"center" | "left" | "auto" | "auto"| undefined}
+   * @memberof StepIndicatorStyles
+   *
+   */
+     textAlign?: | 'center'
+     | 'left'
+     | 'auto'
+     | 'right'
+     | undefined;
+
+  
+    /**
+   * text margin within the label
+   *
+   * @default 20
+   * @type {number}
+   * @memberof StepIndicatorStyles
+   *
+   */
+     marginHorizontal?: number
+
   /**
    * Label fontFamily for custom fonts
    *
@@ -257,6 +292,17 @@ export interface StepIndicatorProps {
    * @memberof StepIndicatorProps
    */
   stepCount?: number;
+
+  /**
+   * Number of steps
+   *
+   * @default 270
+   * @type {number}
+   * @memberof StepIndicatorProps
+   */
+   labelWidth?: number;
+
+  
 
   /**
    * Orientation of the Steps
